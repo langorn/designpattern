@@ -1,0 +1,71 @@
+<html>
+<head>
+
+<script>
+
+// factory design pattern practice
+// source from:
+// http://www.dofactory.com/javascript-factory-method-pattern.aspx
+// http://www.adobe.com/devnet/html5/articles/javascript-design-patterns-pt2-adapter-decorator-factory.html
+
+	var huntingTools = {
+
+		equipTools:function(things){
+			var needs;
+
+			if(things=="onions"){
+				needs = new onions();
+			}else if(things=="cross"){
+				needs = new cross();
+			}
+
+			needs.things = things;
+			needs.words = new words();
+
+			return needs;
+		}
+	};
+	
+	var onions = function(){
+		this.message = ' vampire dont like it';
+	};
+
+	var cross = function(){
+		this.message = ' demon dont like it';
+	}
+
+	var words = function (){
+				this.messaging = '=><br>';
+				return this.messaging
+	}
+
+	huntingTools.prototype = {
+
+		attack:function(){
+			console.log('attack to them');
+		}
+	}
+
+
+
+	var hunting = [];
+	var factory = huntingTools;
+
+	hunting.push(factory.equipTools('onions'));
+	hunting.push(factory.equipTools('cross'));
+	console.log(typeof(huntingTools));
+	console.log(hunting);
+
+</script>
+</head>
+<body>
+
+
+
+</body>
+
+
+
+
+
+</html>
